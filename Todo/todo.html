@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<head>
+  <style>
+    ul{
+      list-style: none;
+    padding-inline-start: 0px;
+    margin-top: 0px;
+    background-color: #d0d0d0
+    }
+   ul >li{
+    padding: 2px;
+   }
+   input{
+     width: 100%;
+   }
+  </style>
+  <script>
+// function capitalizeFirstLetter(inputStr) {
+//   return string.charAt(0).toUpperCase() + inputStr.slice(1);
+// }
+function formatedText(inputStr){
+  let flag=true;
+let inputStr1=[];
+  for(let i=0;i<inputStr.length;i++){
+    if(inputStr[i]===" ")
+    {
+    flag=true;
+inputStr1[i]=inputStr[i]
+    continue;  
+  }
+    if(flag)
+    {
+    inputStr1[i]=inputStr[i].toUpperCase();
+      flag=false;
+  }else{
+ inputStr1[i]=inputStr[i]
+}
+  }
+  return inputStr1.join('')
+}
+
+    
+function submitFunc(data){
+
+let task=data.target[0].value;
+if(task!==""){
+let selectedList=document.getElementById('viewList');
+let newLI=document.createElement('li');
+//let formatedText=task.split(' ').map(capitalizeFirstLetter).join(' ');//Inbuilt method for same task but it has more iteration
+newLI.appendChild(document.createTextNode(formatedText(task)));
+selectedList.appendChild(newLI);
+document.getElementById('inputText').value=""
+}
+else{
+  alert('Please Enter the Task')
+}
+}
+  </script>
+</head>
+<body>
+<form onsubmit="submitFunc(event);return false">
+<input type="text" id="inputText" />
+</form>
+
+<ul id="viewList">
+
+</ul>
+
+</body>
+</html>
